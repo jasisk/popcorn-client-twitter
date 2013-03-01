@@ -1,0 +1,22 @@
+{
+  "name": "popcorn",
+  "version": "0.0.1",
+  "description": "popcorn",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "",
+  "license": "BSD",
+  "dependencies": {
+    "redis": "~0.8.2",
+    "hiredis": "~0.1.14",
+    "rc": "0.0.8",
+    "async": "~0.2.5",
+    "ntwitter": "~0.5.0",
+    "levelup": "~0.5.4",
+    "event-stream": "~3.0.11"
+  }
+}
