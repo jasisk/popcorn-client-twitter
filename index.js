@@ -5,14 +5,27 @@ var util = require("util"),
       server: "127.0.0.1",
       dbFileName: "popcorn.db",
       channel: "popcorn",
-      legitOffset: 5,
-      burnOffset: 10
+      legitOffset: 60*2,
+      burnOffset: 60*15
     }),
     redis = require("./lib/redis")(config),
     twitter = require("./lib/twitter")(config),
     leveldb = require("./lib/leveldb")(config);
 
-var burnTimer, isBurned;
+var burnTimer, isBurned, bagNumber=2;
+var messages = [
+  "Popcorn has been made. Go get it.",
+  "Popcorn has been made. Come get some.",
+  "Popcorn. I has it.",
+  "You should get some popcorn right now.",
+  "Someone is nicer than you. Popcorn's ready.",
+  "You know what you could go for right now? Corn, oil, and salt. Get it."
+];
+
+function getMessage(){
+  messageNumber = Math.floor(Math.random()*messages.length);
+  return messages[messageNumber];
+}
 
 redis.on("log", util.log.bind(util));
 twitter.on("log", util.log.bind(util));
@@ -33,7 +46,7 @@ redis.on("off", function(data){
   if ( latestOn && latestOn < data - config.legitOffset * 1000 ) {
     if (!isBurned) {
       util.log("Popcorned. Informing Twitters.");
-      twitter.setStatus("Popcorn has been made. Go get it.", function(){});
+      twitter.setStatus(getMessage() + " Batch #" + (bagNumber++) + ".", function(){});
     } else {
       util.log("Burning popcorn turned off.");
       twitter.setStatus("Crisis averted. Burning popcorn turned off.", function(){});
