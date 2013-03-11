@@ -12,7 +12,7 @@ var util = require("util"),
     twitter = require("./lib/twitter")(config),
     leveldb = require("./lib/leveldb")(config);
 
-var burnTimer;
+var burnTimer, isBurned;
 
 redis.on("log", util.log.bind(util));
 twitter.on("log", util.log.bind(util));
@@ -31,16 +31,23 @@ redis.on("off", function(data){
   clearTimeout(burnTimer);
   var latestOn = redis.getLatest("on");
   if ( latestOn && latestOn < data - config.legitOffset * 1000 ) {
-    util.log("Popcorned. Informing Twitters.");
-    twitter.setStatus("[TEST TWEET - IGNORE] Popcorn has been made. Go get it.", function(){});
+    if (!isBurned) {
+      util.log("Popcorned. Informing Twitters.");
+      twitter.setStatus("[TEST TWEET - IGNORE] Popcorn has been made. Go get it.", function(){});
+    } else {
+      util.log("Burning popcorn turned off.");
+      twitter.setStatus("[TEST TWEET - IGNORE] Crisis averted. Burning popcorn turned off.", function(){});
+    }
   } else {
-    util.log("Phony popcorn attempt. Nice try.");    
+    util.log("Phony popcorn attempt. Nice try.");
   }
 });
 
 redis.on("on", function(data){
+  isBurned = false;
   clearTimeout(burnTimer);
   burnTimer = setTimeout(function(){
+    isBurned = true;
     util.log("Popcorn burning. Informing Twitters.");
     twitter.setStatus("[TEST TWEET - IGNORE] Popcorn is burning. Someone go turn it off.", function(){});
   }, config.burnOffset * 1000);
