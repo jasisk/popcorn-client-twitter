@@ -33,10 +33,10 @@ redis.on("off", function(data){
   if ( latestOn && latestOn < data - config.legitOffset * 1000 ) {
     if (!isBurned) {
       util.log("Popcorned. Informing Twitters.");
-      twitter.setStatus("[TEST TWEET - IGNORE] Popcorn has been made. Go get it.", function(){});
+      twitter.setStatus("Popcorn has been made. Go get it.", function(){});
     } else {
       util.log("Burning popcorn turned off.");
-      twitter.setStatus("[TEST TWEET - IGNORE] Crisis averted. Burning popcorn turned off.", function(){});
+      twitter.setStatus("Crisis averted. Burning popcorn turned off.", function(){});
     }
   } else {
     util.log("Phony popcorn attempt. Nice try.");
@@ -49,7 +49,7 @@ redis.on("on", function(data){
   burnTimer = setTimeout(function(){
     isBurned = true;
     util.log("Popcorn burning. Informing Twitters.");
-    twitter.setStatus("[TEST TWEET - IGNORE] Popcorn is burning. Someone go turn it off.", function(){});
+    twitter.setStatus("Popcorn is burning. Someone go turn it off.", function(){});
   }, config.burnOffset * 1000);
 });
 
