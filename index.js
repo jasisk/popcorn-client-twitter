@@ -26,7 +26,7 @@ var messages = [
 ];
 
 function getMessage(){
-  messageNumber = Math.floor(Math.random()*messages.length);
+  var messageNumber = Math.floor(Math.random()*messages.length);
   return messages[messageNumber];
 }
 
