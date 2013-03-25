@@ -19,7 +19,10 @@ var messages = [
   "Popcorn. I has it.",
   "You should get some popcorn right now.",
   "Someone is nicer than you. Popcorn's ready.",
-  "You know what you could go for right now? Corn, oil, and salt. Get it."
+  "You know what you could go for right now? Corn, oil, and salt. Get it.",
+  "You know the rice crispy elves? I don't trust snap and crackle. Love Pop, though. P.S. Popcorn's ready.",
+  "What's a self-aware popcorn machine's favorite music? Why, hip POP of course. Get it? Get it.",
+  "Many indigenous peoples in mesoamerica called corn, \"maize.\" Popmaize is ready."
 ];
 
 function getMessage(){
