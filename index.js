@@ -22,7 +22,10 @@ var messages = [
   "You know what you could go for right now? Corn, oil, and salt. Get it.",
   "You know the rice crispy elves? I don't trust snap and crackle. Love Pop, though. P.S. Popcorn's ready.",
   "What's a self-aware popcorn machine's favorite music? Why, hip POP of course. Get it? Get it.",
-  "Many indigenous peoples in mesoamerica called corn, \"maize.\" Popmaize is ready."
+  "Many indigenous peoples in mesoamerica called corn, \"maize.\" Popmaize is ready.",
+  "Lions, tigers and hippoPOPamuses, oh my! Popcorn's ready.",
+  "Don't try to butter me up -- I already am. Popcorn's ready.",
+  "Love the color of that shirt you're wearing today. Really makes your eyes POP. Popcorn's ready."
 ];
 
 function getMessage(){
